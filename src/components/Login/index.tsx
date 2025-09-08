@@ -2,22 +2,12 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import {ForkKnife} from "@phosphor-icons/react";
+import { findUserByName } from "@/Data/data";
 const LogIn = () => {
     const [userName, setUserName] = useState<string> ('');
-    const [errorMessage, setErrorMessage] = useState<string>('')
+    const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [password, setPassword] = useState<string> ('')
-    const users = [
-      {name:'lina',
-      password: '1234'}, 
-      {name:'mina', 
-      password: '1234'}, 
-      {name:'hina', 
-      password: '1234'}
-    ]
-    const findUserByName =(name: string , password: string) => {
-      return users.find((user) => user.name === name && user.password === password);
-    }
-
+  
     useEffect(() => {
     if (userName ) {
         const userFound = findUserByName(userName, password);
@@ -56,7 +46,7 @@ const LogIn = () => {
                 <input value={password ?? ''} placeholder="example: 1234" onChange={handleChangePassword} className='text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl'>
                 </input>
               </div>
-              <button onSubmit={handleSubmit} type='submit' className="bg-green-500 text-white rounded p-2 w-100">
+              <button onSubmit={handleSubmit} type='submit' className="bg-green-500 text-white rounded p-2 w-100 hover:bg-green-400 transition-shadow">
                 Log in
               </button>
               {errorMessage && (
