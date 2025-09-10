@@ -1,4 +1,6 @@
- const users = [
+import { UserType } from "@/Utils/types";
+
+ const users: UserType[] = [
       {name:'lina',
       password: '1234',
       favouriteCategory:'SeaFood',

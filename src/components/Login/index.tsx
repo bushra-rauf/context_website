@@ -3,28 +3,32 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import {ForkKnife} from "@phosphor-icons/react";
 import { findUserByName } from "@/Data/data";
+import { useUserContext } from "@/Utils/context";
+import { UserContextType } from "@/Utils/types";
 const LogIn = () => {
     const [userName, setUserName] = useState<string> ('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [password, setPassword] = useState<string> ('')
-  
+    const {user, setUser} = useUserContext() as UserContextType  
     useEffect(() => {
     if (userName ) {
-        const userFound = findUserByName(userName, password);
-        if (!userFound){
+        const userLogedIn = findUserByName(userName, password);
+        if (!userLogedIn){
           setErrorMessage('User not found. Try lina, mina, tina')
         }else {
-          setErrorMessage('')
+          setErrorMessage(null)
+          setUser(userLogedIn)
         }  
       }      
     }, [userName, password]);
+    console.log('user is:' + user ?.name)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const handleClickName = (e: React.ChangeEvent<HTMLInputElement>) =>{
        setUserName(e.target.value)
      
     }
       
-    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCLickPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value)
     }
     const handleSubmit = (e: React.FormEvent) => {
@@ -41,9 +45,9 @@ const LogIn = () => {
                   <ForkKnife size={42}/>
                 <label className="mb-7 block text-4xl font-extrabold text-gray-700">Log in</label>
                 </div>
-                <input value={userName ?? ''} placeholder="Enter Name" onChange= {handleChange} className="text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl">
+                <input value={userName ?? ''} placeholder="Enter Name" onChange= {handleClickName} className="text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl">
                 </input>
-                <input value={password ?? ''} placeholder="example: 1234" onChange={handleChangePassword} className='text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl'>
+                <input value={password ?? ''} placeholder="example: 1234" onChange={handleCLickPassword} className='text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl'>
                 </input>
               </div>
               <button onSubmit={handleSubmit} type='submit' className="bg-green-500 text-white rounded p-2 w-100 hover:bg-green-400 transition-shadow">
