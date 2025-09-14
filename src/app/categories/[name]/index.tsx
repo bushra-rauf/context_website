@@ -1,7 +1,7 @@
 'use Client'
 import { useState, useEffect } from "react"
 import { getMealByCategory} from "@/components/FetchLib/fetch"
-import { useParams, useRouter } from "next/navigation"
+import { useParams,  } from "next/navigation"
 import Link from "next/link"
 import { Recipe } from "@/components/FetchLib/types"
 import { useUserContext } from "@/Utils/context"
@@ -11,27 +11,24 @@ import { UserContextType } from "@/Utils/types"
 const MealsByCategoryPage = () => {
     const {user} = useUserContext()  as UserContextType
     const params = useParams()
-    const router = useRouter()
+    // const router = useRouter()
     const category = params?.name as string
     const [meals, setMeals] = useState <Recipe[]>([])
     
-    useEffect (()=> {
-       if (!user){
-        router.push('/login')
-       }
-    }, [user, router]) // it only runs when user is change
+    // useEffect (()=> {
+    //    if (!user){
+    //     router.push('/login')
+    //    }
+    // }, [user, router]) // it only runs when user is change
 
     useEffect (()=> {
         const fetch = async() => {
+            if(!user) return
             const data = await getMealByCategory(category)
             setMeals(data)
           }
         fetch()
     },[category])
-
-    if (!user) {
-      return
-    }
 
     return(
        <div>
