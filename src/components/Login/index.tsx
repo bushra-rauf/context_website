@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {ForkKnife} from "@phosphor-icons/react";
 import { findUserByName } from "@/Data/data";
 import { useUserContext } from "@/Utils/context";
@@ -10,6 +10,13 @@ const LogIn = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [password, setPassword] = useState<string> ('')
     const {user, setUser} = useUserContext() as UserContextType  
+
+  //    useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, [setUser]);
 
     const handleClick = (e: {preventDefault: () => void}) => {
     e.preventDefault();
@@ -23,6 +30,7 @@ const LogIn = () => {
         }else {
           setErrorMessage(null)
           setUser(userLogedIn)
+          localStorage.setItem("user", JSON.stringify(userLogedIn));
         }  
       }      
         console.log('user is:' + user ?.name)

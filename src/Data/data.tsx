@@ -10,7 +10,7 @@ import { UserType } from "@/Utils/types";
       favouriteRecipe: []}, 
       {name:'hina', 
       password: '1234',
-      favouriteCategory: 'beef',
+      favouriteCategory: 'Beef',
       favouriteRecipe: []}
     ]
 
@@ -21,6 +21,6 @@ export const findUserByName =(name: string , password: string) => {
 
 export const menuItems = [
   {name: 'Home', path: '/'},
-  {name: 'Category', path: '/category'},
+  {name: 'Categories', path: '/categories'},
   {name: 'Profile', path: '/profile'}
 ]
