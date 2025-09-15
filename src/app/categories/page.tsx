@@ -24,7 +24,7 @@ const Category = () => {
      useEffect(() => {
         const fetcher = async () => {
           const data = await getCategories()
-          setCategories(data)
+          setCategories(data )
         }
         fetcher();
     }, [])

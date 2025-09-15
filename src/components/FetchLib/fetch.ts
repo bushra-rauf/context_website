@@ -1,4 +1,4 @@
-import { CategoriesResponse, MealDetail, MealCategory, Recipe } from "./types"
+import { CategoriesResponse, MealDetail, MealCategory, Recipe, RecipeResponse } from "./types"
 
 
     const API_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/'
@@ -28,8 +28,8 @@ export const getCategories = async (): Promise<MealCategory[]> => {
 export const getMealByCategory = async(category: string): Promise<Recipe[]> => {
     try {
        const response = await fetch(`${API_ENDPOINT}filter.php?c=${category}`)
-       const mealData = await response.json()
-           return mealData ?? [];
+       const mealData: RecipeResponse = await response.json()
+           return mealData.meals ?? [];
     }catch(error){
     console.log('error')
     return []
