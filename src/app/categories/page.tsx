@@ -31,13 +31,13 @@ const Category = () => {
 
     return(
       <div>
-        <h1 className='font-bold text-2xl text-gray-900'>Categories</h1>
+        <h1 className='pl-5 font-bold text-2xl text-gray-900'>Categories</h1>
         {user && (
-        <p className="font-medium text-sm text-gray-700">
+        <p className="pl-5 font-medium text-2xl text-gray-700">
             Favourite: <span className="font-normal">{user.favouriteCategory ?? 'No Category' }</span>
         </p>
         )}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 p-5">
         {categories && categories.map(c => (
           <div key={c.idCategory} className="overflow-hidden rounded-lg border bg-white shadow-sm">
             <Link href={`/categories/${(c.strCategory.toLocaleLowerCase())}`} className="block">

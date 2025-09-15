@@ -7,18 +7,26 @@ import { useUserContext } from "@/Utils/context";
 import { UserContextType } from "@/Utils/types";
 import Logo from "../Logo";
 import Header from "../Header";
+import { useMenuContext } from "@/Utils/contextmenu";
+import { MenuContextType } from "@/Utils/menutypes";
+
 const LogIn = () => {
     const [userName, setUserName] = useState<string | null> (null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [password, setPassword] = useState<string> ('')
     const {user, setUser} = useUserContext() as UserContextType  
-
+    const { isAuthPage,setIsAuthPage} = useMenuContext() as MenuContextType
   //    useEffect(() => {
   //   const storedUser = localStorage.getItem("user");
   //   if (storedUser) {
   //     setUser(JSON.parse(storedUser));
   //   }
   // }, [setUser]);
+
+  useEffect ( ()=> {
+    setIsAuthPage(true)
+    return ()=> setIsAuthPage(false)
+  }, [setIsAuthPage])
 
     const handleClick = (e: {preventDefault: () => void}) => {
     e.preventDefault();
@@ -49,7 +57,7 @@ const LogIn = () => {
     return(
        <div className="relative w-full h-screen">
       {/* Header with Logo only */}
-      <Header showMenu={false} />
+      <Header />
       <div className="relative  p-4 w-full h-screen flex items-center justify-center">  
             <Image src= {'/loginbgb.jpg'} alt="login-background" fill className="object-cover -z-10"/>
        
