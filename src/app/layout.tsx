@@ -7,6 +7,7 @@ import LogInWrapper from "@/components/LogInWrapper";
 import Header from "@/components/Header";
 import { MenuContextProvider } from "@/Utils/contextmenu";
 import Footer from "@/components/Footer";
+import BackArrow from "@/components/BackArrow";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,10 @@ export default function RootLayout({
             <MenuContextProvider>
             <LogInWrapper>
               <Header/>
+              <div className="p-10">
+               <BackArrow />
               {children}
+              </div>
               <Footer/>
             </LogInWrapper>
             </MenuContextProvider>

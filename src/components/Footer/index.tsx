@@ -33,7 +33,7 @@ const Footer = () => {
         {/* Right: Links */}
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-0">
           <Link
-            href="https://github.com/BushraRauf"
+            href="https://github.com/bushra-rauf"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:scale-105 transition-transform duration-300"
