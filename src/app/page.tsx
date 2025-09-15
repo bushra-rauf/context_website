@@ -55,14 +55,14 @@ export default function Home({children}: {children: React.ReactNode}) {
     <>    
       <div className="flex flex-col p-10 font-extrabold text-4xl">
       {user && <><h2>Hi {user.name},</h2><p>Welcome to our website</p></> }
-      {user && <p>Your Favouite Category: {user.favouriteCategory }  </p>}
+      {user && <p>Your Favouite Category: {user.favouriteCategory} </p>}
       </div>
        {user?.favouriteCategory && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold text-gray-900">
+          <h2 className=" pl-5  text-lg font-bold text-gray-900 underline">
             {user.favouriteCategory} picks for you
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          <div className="p-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             {favMeals.map(m => (
               <Link
                 key={m.idMeal}
