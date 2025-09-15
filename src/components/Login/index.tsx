@@ -5,6 +5,8 @@ import {ForkKnife} from "@phosphor-icons/react";
 import { findUserByName } from "@/Data/data";
 import { useUserContext } from "@/Utils/context";
 import { UserContextType } from "@/Utils/types";
+import Logo from "../Logo";
+import Header from "../Header";
 const LogIn = () => {
     const [userName, setUserName] = useState<string | null> (null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -45,21 +47,27 @@ const LogIn = () => {
     }
 
     return(
+       <div className="relative w-full h-screen">
+      {/* Header with Logo only */}
+      <Header showMenu={false} />
+      
         
-        <div className="relative w-full h-screen flex items-center justify-center">  
+        <div className="relative  p-4 w-full h-screen flex items-center justify-center">  
             <Image src= {'/loginbgb.jpg'} alt="login-background" fill className="object-cover -z-10"/>
-            <form onSubmit={handleClick}className="bg-white border-2 rounded p-10">
+       
+            <form onSubmit={handleClick}className="bg-white border-2 rounded-lg sm:p-10 p-8 w-full max-w-md shadow-lg">
               <div className="flex flex-col">
-                <div className="flex gap-3 ">
+                <div className="flex gap-3 items-center mb-4 sm:mb-6">
                   <ForkKnife size={42}/>
-                <label className="mb-7 block text-4xl font-extrabold text-gray-700">Log in</label>
+                <label className="mb-7 text-3xl block sm:text-4xl font-extrabold text-gray-700">Log in</label>
                 </div>
-                <input value={userName ?? ''} placeholder="Enter Name" onChange= {handleClickName} className="text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl">
+                <input value={userName ?? ''} placeholder="Enter Name" onChange= {handleClickName} className="text-gray-400 mb-4 sm:text-2xl w-full rounded border px-3 py-1 shadow-inner "> 
+                {/* focus:outline-none focus:ring-2 focus:ring-green-500 */}
                 </input>
-                <input value={password ?? ''} placeholder="example: 1234" onChange={handleCLickPassword} className='text-gray-400 mb-4 text-2xl w-100 rounded border px-3 py-1 shadow-2xl'>
+                <input value={password ?? ''} placeholder="example: 1234" onChange={handleCLickPassword} className='text-gray-400 mb-4 sm:text-2xl w-full rounded border px-3 py-1 shadow-2xl'>
                 </input>
               </div>
-              <button  type='submit' className="bg-green-500 text-white rounded p-2 w-100 hover:bg-green-400 transition-shadow">
+              <button  type='submit' className="bg-green-500 text-white rounded p-2 w-full hover:bg-green-400 transition-shadow">
                 Log in
               </button>
               {errorMessage && (
@@ -67,6 +75,7 @@ const LogIn = () => {
               )}
                <p className='mt-4 text-2xl text-gray-400'>Existing users: lina, mina, hina</p>
             </form>
+        </div>
         </div>
     
     )

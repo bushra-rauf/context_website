@@ -22,7 +22,11 @@ import DesktopMenu from "../DesktopMenu"
 import Logo from "../Logo"
 import MobileMenu from "../MobileMenu"
 
-const Header = () => {
+interface HeaderProps {
+  showMenu?: boolean
+}
+
+const Header = ({showMenu= true}: HeaderProps) => {
     return (
        <header className="relative bg-gradient-to-r from-green-900 to-amber-700 text-white shadow-md pb-10 after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:w-full after:h-10 after:bg-green-400 after:blur-xl after:opacity-30 after:rounded-full z-10">
           
@@ -42,13 +46,20 @@ const Header = () => {
             <div className="relative z-10 p-5">
               <div className="flex items-center justify-between">
                  <Logo/>
+                 {showMenu && (
+                  <>
               <div className="hidden md:flex">
                  <DesktopMenu/>
               </div>
                 <div className="flex md:hidden">
                   <MobileMenu/>
                 </div>
-              </div>
+                
+                </>
+              
+              )}
+              
+            </div>
             </div>
         </header>
     )
